@@ -34,8 +34,12 @@
 
 <div class="input-group">
     <input type="search" class="form-control rounded" placeholder="Store Id" [(ngModel)]="storeid">
-    <button type="button" class="btn btn-primary"  (click)="search(storeid)">search</button>
+    <button type="button" class="btn btn-primary"  (click)="search(storeid)" >search</button>
 </div> 
+
+<div>
+  <p style="margin-left: 800px; margin-top: -40px; font-size: 30px;">วันที่ : {{date | date:'yyyy-MM-dd'}}</p>
+</div>
 
 <div class="row">
   <div class="side1">

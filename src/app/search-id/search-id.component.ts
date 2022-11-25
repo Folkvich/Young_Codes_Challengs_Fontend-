@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Search } from 'src/app/services/user.service';
 
@@ -33,17 +34,23 @@ export class SearchIdComponent implements OnInit {
   d_humidity = '';
   d_url = '';
 
+
   constructor(private Search: Search) {}
 
+  date = new Date();
+
   ngOnInit(): void {
-    //   this.Search.getbook(18002).subscribe((res)=>{console.log(res.result[0]);
-    // })
   }
 
   search(id: number) {
+
+    if(id==undefined){
+      return alert("ไม่พบข้อมูล กรุณาใส่ข้อมูล");
+    }
     this.Search.getstoreid(id).subscribe((res) => {
+      console.log('status ',res.status)
+      if(res.status.includes('not found'))return alert('not ok');
       console.log(res.result[0].store_id);
-      //  this.storeid = res.result[0].store_id
       this.storename = res.result[0].store_name;
       this.storelat = res.result[0].store_latitude;
       this.storelong = res.result[0].store_longitude;
@@ -59,6 +66,14 @@ export class SearchIdComponent implements OnInit {
       this.d_windspeedKmph = res.result[0].day_windspeedKmph;
       this.d_humidity = res.result[0].day_humidity;
       this.d_url = res.result[0].day_weatherIconUrl;
+
+      this.date = res.result[0].date;
+
+    },
+    err=>{
+      alert('ไม่พบข้อมูล กรุณาใส่ข้อมูล');
     });
+
+    
   }
 }

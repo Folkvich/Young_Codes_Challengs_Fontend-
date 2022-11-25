@@ -17,6 +17,8 @@ export class SearchLatLongComponent implements OnInit {
 
   constructor(private Search: Search) {}
 
+  date = new Date();
+
   storelat: any;
   storelong: any;
   storeid = '';
@@ -37,7 +39,11 @@ export class SearchLatLongComponent implements OnInit {
   ngOnInit(): void {}
 
   searchlatlong(lat: number, long: number) {
+    if(lat==undefined&&long==undefined){
+      return alert("ไม่พบข้อมูล กรุณาใส่ข้อมูล");
+    }
     this.Search.getstorelatlong(lat, long).subscribe((res) => {
+      if(res.status.includes('not found'))return alert('not ok');
       console.log(res.result);
       this.storeid = res.result[0].store_id;
       this.storename = res.result[0].store_name;
@@ -55,6 +61,12 @@ export class SearchLatLongComponent implements OnInit {
       this.d_windspeedKmph = res.result[0].day_windspeedKmph;
       this.d_humidity = res.result[0].day_humidity;
       this.d_url = res.result[0].day_weatherIconUrl;
+
+      this.date = res.result[0].date;
+      
+    },
+    err=>{
+      alert('ไม่พบข้อมูล กรุณาใส่ข้อมูล');
     });
   }
 }
