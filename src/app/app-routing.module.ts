@@ -8,7 +8,6 @@ const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'id', component: SearchIdComponent },
   { path: 'latlong', component: SearchLatLongComponent },
-  { path: 'qqqq', component: SearchIdComponent },
 ];
 
 @NgModule({

@@ -8,15 +8,38 @@ import { map, Observable } from 'rxjs';
 export class Search {
   constructor(private http: HttpClient) {}
   httpHeaders = new HttpHeaders().set('Content-Type', 'application/json');
-  backend_api = 'http://localhost:3300';
+  backend_api = 'http://localhost:3000';
 
-  getStore() {
-    return this.http.get(this.backend_api + '/getstore');
-  }
+  // getStore() {
+  //   return this.http.get(this.backend_api + '/getstore');
+  // }
 
-  getbook(id: number): Observable<any> {
+  // getstoreid(id: number): Observable<any> {
+  //   let API_URL = `${this.backend_api}/getstore`;
+  //   let param = new HttpParams().set("id",id);
+  //   return this.http.get(API_URL, { params: param }).pipe(
+  //     map((res: any) => {
+  //       return res || {};
+  //     })
+  //   );
+  // }
+
+  getstoreid(id: number): Observable<any> {
     let API_URL = `${this.backend_api}/getstore`;
     let param = new HttpParams().set("id",id);
+    return this.http.get(API_URL, { params: param }).pipe(
+      map((res: any) => {
+        return res || {};
+      })
+    );
+  }
+
+  getstorelatlong(lat: number,long:number): Observable<any> {
+    // let param = new HttpParams()
+    let API_URL = `${this.backend_api}/getlatlong`;
+    let param = new HttpParams().set("lat",lat).set("long",long);
+    // param.set("lat",lat);
+    // param.set("long",long);
     return this.http.get(API_URL, { params: param }).pipe(
       map((res: any) => {
         return res || {};

@@ -13,6 +13,25 @@
   <p>Created by Group 2.</p>
 </div>
 
+<div class="container" style="margin-top: 10px;">
+  <div class="row">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>รหัสร้าน</th>
+        <th>ชื่อร้าน</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let hero of heroes ">
+        <td>{{hero.id}}</td>
+        <td>{{hero.name}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
 <div class="input-group">
     <input type="search" class="form-control rounded" placeholder="Store Id" [(ngModel)]="storeid">
     <button type="button" class="btn btn-primary"  (click)="search(storeid)">search</button>
@@ -20,12 +39,32 @@
 
 <div class="row">
   <div class="side1">
-    <p>รหัสร้าน = {{storeid}}</p><br>
-    <p>ชื่อร้าน = {{storename}}</p><br>
-    <p>latitude = {{storela}}</p><br>
-    <p>longitude = {{storelong}}</p>
+    <b><p style="margin-bottom: 50px; color: rgb(255, 0, 0); text-align: center; font-size: 18px;">ข้อมูลร้าน</p></b>
+    <p>รหัสร้าน : {{storeid}}</p><br>
+    <p>ชื่อร้าน : {{storename}}</p><br>
+    <p>latitude : {{storelat}}</p><br>
+    <p>longitude : {{storelong}}</p>
+    <img src="https://i.postimg.cc/SKqPWj4y/253004193-477587083566699-6553618091595967105-n.png" style="width: 200px; height: 100px; margin-top: 18;">
   </div>
 
+  <div class="side2">
+    <b><p style="margin-bottom: 50px; color: rgb(253, 0, 0); text-align: center; font-size: 18px;">สภาพอากาศช่วงกลางวัน</p></b>
+    <p>สภาพอากาศ  {{d_weatherDesc}}</p><br>
+    <p>อุณหภูมิ  {{d_tempC}}<span style="margin-left: 5px;">ํC</span></p><br>
+    <p>แรงลม  {{d_windspeedKmph}}<span style="margin-left: 5px;">Km/h</span></p><br>
+    <p>ความชื้น  {{d_humidity}}<span style="margin-left: 5px;">%</span></p> 
+    <img src={{d_url}} style="width: 100px; margin-top: 20px; margin-left: 50px;">
+  </div>
+
+  <div class="side3">
+    <b><p style="margin-bottom: 50px; color: rgb(255, 0, 0); text-align: center; font-size: 18px;">สภาพอากาศช่วงกลางคืน</p></b>
+    <p>สภาพอากาศ  {{n_weatherDesc}}</p><br>
+    <p>อุณหภูมิ  {{n_tempC}}<span style="margin-left: 5px;">ํC</span></p><br>
+    <p>แรงลม  {{n_windspeedKmph}}<span style="margin-left: 5px;">Km/h</span></p><br>
+    <p>ความชื้น  {{n_humidity}}<span style="margin-left: 5px;">%</span></p>
+    <img src={{n_url}} style="width: 100px; margin-top: 20px; margin-left: 50px;">
+  </div>
+  
 </div>
 
 <div class="return" style="margin-right: 50px;">
@@ -34,4 +73,6 @@
 
 </body>
 </html>
+
+<div class="footer"></div>
 
